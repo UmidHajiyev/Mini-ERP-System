@@ -1,3 +1,7 @@
+"""
+Represents a product in the inventory.
+"""
+
 from django.db import models
 from .category import Category
 
@@ -8,11 +12,15 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
     reorder_level = models.IntegerField()
     description = models.TextField()
+    stock_level = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
     
     def update_product(self,name,sku,category_id,unit_price,reorder_level,description):
+        """
+        Updates the product and saves it.
+        """
         self.name = name
         self.sku = sku
         self.category = Category.objects.get(id=category_id)
