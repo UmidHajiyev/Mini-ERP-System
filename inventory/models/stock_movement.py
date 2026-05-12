@@ -7,7 +7,7 @@ from .product import Product
 from .warehouse import Warehouse
 from django.core.exceptions import ValidationError
 
-class Stock_Movement(models.Model):
+class StockMovement(models.Model):
 
     movement_types = [
         ("IN","In"),
@@ -28,6 +28,9 @@ class Stock_Movement(models.Model):
             raise ValidationError("Not enough stock")
         
     def save(self, *args, **kwargs):
+        if self.pk:
+            raise ValidationError("Stock movements cannot be edited after creation")
+
         self.check_stock()
 
         if not self.pk:
@@ -38,6 +41,10 @@ class Stock_Movement(models.Model):
 
             self.product.save()
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise ValidationError("Stock movements cannot be deleted.")
+
 
     def __str__(self):
         return f"{self.product.name} - {self.movement_type} - {self.quantity} | Remaining stock: {self.product.stock_level}"
