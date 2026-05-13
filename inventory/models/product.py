@@ -12,7 +12,7 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
     reorder_level = models.IntegerField()
     description = models.TextField()
-    stock_level = models.PositiveIntegerField(default=0)
+    stock = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name

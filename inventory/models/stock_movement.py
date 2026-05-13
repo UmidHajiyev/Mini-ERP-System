@@ -7,6 +7,8 @@ from .product import Product
 from .warehouse import Warehouse
 from django.core.exceptions import ValidationError
 
+from django.utils import timezone
+
 class StockMovement(models.Model):
 
     movement_types = [
@@ -19,7 +21,7 @@ class StockMovement(models.Model):
     warehouse = models.ForeignKey(Warehouse,on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     movement_type = models.CharField(max_length=3,choices=movement_types)
-    date = models.DateField()
+    date = models.DateTimeField(default=timezone.now)
     note = models.TextField()
 
 
@@ -35,9 +37,9 @@ class StockMovement(models.Model):
 
         if not self.pk:
             if self.movement_type == "IN":
-                self.product.stock_level += self.quantity
+                self.product.stock += self.quantity
             elif self.movement_type =="OUT":
-                self.product.stock_level -=self.quantity
+                self.product.stock -=self.quantity
 
             self.product.save()
         super().save(*args, **kwargs)
@@ -47,4 +49,4 @@ class StockMovement(models.Model):
 
 
     def __str__(self):
-        return f"{self.product.name} - {self.movement_type} - {self.quantity} | Remaining stock: {self.product.stock_level}"
+        return f"{self.product.name} - {self.movement_type} - {self.quantity} | Remaining stock: {self.product.stock}"
