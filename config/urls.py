@@ -1,4 +1,5 @@
 from django.urls import include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 """
 URL configuration for config project.
 
@@ -22,4 +23,8 @@ from django.urls import path
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/inventory/", include("inventory.urls")),
+
+    path("api/auth/login/", TokenObtainPairView.as_view()),
+    path("api/auth/refresh", TokenRefreshView.as_view()),
+
 ]

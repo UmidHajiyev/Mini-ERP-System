@@ -7,8 +7,12 @@ from inventory.models import StockMovement
 from inventory.serializers import StockMovementSerializer
 from inventory.models import Product
 
+from rest_framework.permissions import IsAuthenticated
+
 class CreateStockMovementAPIView(APIView):
 
+    permission_classes = [IsAuthenticated]
+    
     def post(self, request):
         serializer = StockMovementSerializer(data = request.data)
 
@@ -19,6 +23,8 @@ class CreateStockMovementAPIView(APIView):
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
     
 class ProductStockMovementListAPIView(APIView):
+    
+    permission_classes = [IsAuthenticated]
     
     def get(self, request, id):
 

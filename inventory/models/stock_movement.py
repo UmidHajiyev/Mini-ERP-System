@@ -20,13 +20,14 @@ class StockMovement(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     warehouse = models.ForeignKey(Warehouse,on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
+    remaining_stock = models.PositiveIntegerField(editable=False)
     movement_type = models.CharField(max_length=3,choices=movement_types)
     date = models.DateTimeField(default=timezone.now)
     note = models.TextField()
 
 
     def check_stock(self):
-        if self.movement_type == 'OUT' and self.quantity > self.product.stock_level:
+        if self.movement_type == 'OUT' and self.quantity > self.product.stock:
             raise ValidationError("Not enough stock")
         
     def save(self, *args, **kwargs):
@@ -40,7 +41,7 @@ class StockMovement(models.Model):
                 self.product.stock += self.quantity
             elif self.movement_type =="OUT":
                 self.product.stock -=self.quantity
-
+            self.remaining_stock = self.product.stock
             self.product.save()
         super().save(*args, **kwargs)
 
@@ -49,4 +50,4 @@ class StockMovement(models.Model):
 
 
     def __str__(self):
-        return f"{self.product.name} - {self.movement_type} - {self.quantity} | Remaining stock: {self.product.stock}"
+        return f"{self.product.name} - {self.movement_type} - {self.quantity} | Remaining stock: {self.remaining_stock}"
