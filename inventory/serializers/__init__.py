@@ -1,2 +1,3 @@
 from .product_serializer import ProductSerializer
 from .stock_movement_serializer import StockMovementSerializer
+from .category_serializer import CategorySerializer
