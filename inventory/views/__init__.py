@@ -1,2 +1,4 @@
 from .product_view import ProductListAPIView, ProductDetailAPIView, LowStockProductAPIView
 from .stock_movement_view import CreateStockMovementAPIView, ProductStockMovementListAPIView
+from .category_view import CategoryListCreateAPIView
+from .warehouse_view import WarehouseListAPIView
