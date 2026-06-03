@@ -1,5 +1,6 @@
 import type { ProductCreateData } from "@/types/productCreate";
 import type { Product } from "@/types/product";
+import type { PaginatedResponse } from "@/types/pagination";
 import type { StockMovement } from "@/types/stockMovement";
 
 const PRODUCT_BASE_URL = "http://localhost:8000/api/inventory/products/";
@@ -51,17 +52,25 @@ export async function getProductById(productId: string, accessToken: string) {
   return data;
 }
 
-export async function getProductStockMovements(productId: string, accessToken: string) {
-  const response = await fetch(`${PRODUCT_BASE_URL}${productId}/stock-movements/`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+export async function getProductStockMovements(accessToken: string, productId?: string, url?: string) {
+    let requestUrl = "";
 
-  if (!response.ok) {
-    throw new Error("Could not load stock movements");
-  }
+    if (url) {
+        requestUrl = url;
+    } else {
+        requestUrl = `${PRODUCT_BASE_URL}${productId}/stock-movements/`;
+    }
 
-  const data: StockMovement[] = await response.json();
-  return data;
+    const response = await fetch(requestUrl, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not load stock movements");
+    }
+
+    const data: PaginatedResponse<StockMovement> = await response.json();
+    return data;
 }

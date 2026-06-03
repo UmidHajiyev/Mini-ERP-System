@@ -4,6 +4,7 @@ from inventory.views import CreateStockMovementAPIView
 from inventory.views import ProductStockMovementListAPIView
 from inventory.views import LowStockProductAPIView
 from inventory.views import CategoryListCreateAPIView
+from inventory.views import WarehouseListAPIView
 
 urlpatterns = [
     path("products/",ProductListAPIView.as_view()),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("stock-movements/",CreateStockMovementAPIView.as_view()),
     path("low-stock/", LowStockProductAPIView.as_view()),
     path("categories/", CategoryListCreateAPIView.as_view()),
+    path("warehouses/", WarehouseListAPIView.as_view()),
 ]

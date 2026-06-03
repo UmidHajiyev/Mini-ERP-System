@@ -5,7 +5,7 @@ export default function PaginationControls({totalCount, nextPageUrl, previousPag
 {
   return (
     <div className="pagination-controls">
-      <span>Total products: {totalCount}</span>
+      <span>Total count: {totalCount}</span>
 
       <div className="pagination-buttons">
         <button className="secondary-button" onClick={onPrevious} disabled={!previousPageUrl}>

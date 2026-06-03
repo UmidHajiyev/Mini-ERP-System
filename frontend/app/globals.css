@@ -577,7 +577,230 @@ body {
   white-space: nowrap;
 }
 
+.product-detail-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.product-detail-card {
+    width: 100%;
+    max-width: 760px;
+}
+
+.product-detail-card h2 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.product-detail-sku {
+    margin-top: 6px;
+    color: var(--color-text-secondary);
+}
+
+.product-detail-info {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+}
+
+.product-detail-info p {
+    margin: 0;
+}
+
+.movement-card {
+    margin-top: 24px;
+}
+
+.movement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.movement-header h2 {
+    margin: 0;
+}
+
+.movement-header p {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.movement-note-cell {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.movement-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.movement-in {
+    background-color: #dcfce7;
+    color: var(--color-success);
+}
+
+.movement-out {
+    background-color: #fee2e2;
+    color: var(--color-danger);
+}
+
 @media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .sidebar-title {
+    margin-bottom: 16px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .sidebar-link {
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .topbar {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .page-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .search-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-actions {
+    flex-direction: column-reverse;
+  }
+
+  .search-actions button {
+    width: 100%;
+  }
+
+  .table-card,
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .product-table {
+    min-width: 850px;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pagination-buttons {
+    width: 100%;
+  }
+
+  .pagination-buttons button {
+    flex: 1;
+  }
+
+  .product-detail-wrapper {
+    justify-content: flex-start;
+  }
+
+  .product-detail-card {
+    max-width: 100%;
+  }
+
+  .product-detail-info {
+    grid-template-columns: 1fr;
+  }
+
+  .movement-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .movement-note-cell {
+    max-width: 180px;
+  }
+
+  .modal-overlay {
+    align-items: center;
+    padding: 12px;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    max-height: calc(100vh - 24px);
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .modal-form {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+
+  .auth-card {
+    margin: 12px;
+    padding: 24px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+
+  .page-title h1 {
+    font-size: 24px;
+  }
+
+  .topbar span {
+    font-size: 14px;
+  }
   .modal-overlay {
     align-items: center;
     padding: 12px;
